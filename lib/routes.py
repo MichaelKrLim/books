@@ -38,13 +38,13 @@ def films():
 def signup():
     return render_template("signup_form.html")
 
-@routes_bp.route("users/new", methods=["POST"])
+@routes_bp.route("/users/new", methods=["POST"])
 def add_user():
     json=request.form
     conn=get_db()
     with conn.cursor() as cur:
-        cur.execute("INSERT INTO users (username password) VALUES (%s, %s);", (request["username"], request["password"]))
-     	conn.commit()
+        cur.execute("INSERT INTO users (username, password) VALUES (%s, %s);", (request["username"], request["password"]))
+        conn.commit()
     return redirect("/")
         
         
