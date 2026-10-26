@@ -1,0 +1,4 @@
+psycopg
+flask
+pytest
+pytest-playwright

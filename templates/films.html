@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title>Films</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+  </head>
+
+    <body>
+        <h1>Films!</h1>
+        <ul>
+        {%for film in films%}
+        	<li>title: {{film.title}}, release year: {{film.year}}</li>
+       	{%endfor%}
+        </ul>
+    </body>
+</html>
+
