@@ -12,7 +12,6 @@ def index():
 @routes_bp.route("/books", methods=["GET"])
 def books():
     repository=Book_repository()
-    print(repository.all_books())
     return render_template("books.html", books=repository.all_books())
 
 @routes_bp.route("/books", methods=["POST"])
@@ -34,5 +33,18 @@ def films():
     with conn.cursor() as cur:
         cur.execute("SELECT * FROM films;")
         return render_template("films.html",films=[Film(*film) for film in cur.fetchall()])
+
+@routes_bp.route("/users", methods=["GET"])
+def signup():
+    return render_template("signup_form.html")
+
+@routes_bp.route("users/new", methods=["POST"])
+def add_user():
+    json=request.form
+    conn=get_db()
+    with conn.cursor() as cur:
+        cur.execute("INSERT INTO users (username password) VALUES (%s, %s);", (request["username"], request["password"]))
+     	conn.commit()
+    return redirect("/")
         
         
